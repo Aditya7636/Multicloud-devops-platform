@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-k8s
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/Aditya7636/Multicloud-devops-platform.git
+    targetRevision: main
+    path: apps/hello-k8s
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
